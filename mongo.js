@@ -12,7 +12,7 @@ const mongoUri = `mongodb://${env.accountName}:${env.key}@${env.accountName}.doc
 
 function connect() {
     mongoose.set('debug', true);
-    return mongoose.connect(mongoUri, { useMongoClient: true });
+    return mongoose.connect(mongoUri);
 }
 
 module.exports = {
