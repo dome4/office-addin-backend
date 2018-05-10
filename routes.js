@@ -10,4 +10,12 @@ router.post('/hero', (req, res) => {
     heroService.postHero(req, res);
 });
 
+router.put('/hero/:id', (req, res) => {
+    heroService.putHero(req, res);
+});
+
+router.delete('/hero/:id', (req, res) => {
+    heroService.deleteHero(req, res);
+});
+
 module.exports = router;
