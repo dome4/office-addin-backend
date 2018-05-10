@@ -38,3 +38,6 @@ jspm_packages
 
 # Ignore VS Community Files
 .vs/
+
+# env file
+env/environment.js
