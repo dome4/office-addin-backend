@@ -6,4 +6,8 @@ router.get('/heroes', (req, res) => {
     heroService.getHeroes(req, res);
 });
 
+router.post('/hero', (req, res) => {
+    heroService.postHero(req, res);
+});
+
 module.exports = router;

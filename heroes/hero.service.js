@@ -15,6 +15,24 @@ function getHeroes(req, res) {
         });
 }
 
+function postHero(req, res) {
+    const originalHero = { id: req.body.id, name: req.body.name, saying: req.body.saying };
+    const hero = new Hero(originalHero);
+    hero.save(error => {
+        if (checkServerError(res, error)) return;
+        res.status(201).json(hero);
+        console.log('Hero created successfully!');
+    });
+}
+
+function checkServerError(res, error) {
+    if (error) {
+        res.status(500).send(error);
+        return error;
+    }
+}
+
 module.exports = {
-    getHeroes
+    getHeroes,
+    postHero
 };
