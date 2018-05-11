@@ -1,7 +1,13 @@
 const Requirement = require('./requirement.model');
 
+/*
+ * connect to mongodb
+ */
 require('../mongo').connect();
 
+/*
+ * get all requirements of the database
+ */
 function getRequirements(req, res) {
     const docquery = Requirement.find({});
     docquery
@@ -15,6 +21,9 @@ function getRequirements(req, res) {
         });
 }
 
+/*
+ * post new requirement 
+ */
 function postRequirement(req, res) {
     const originalRequirement = { name: req.body.name, content: req.body.content };
     const requirement = new Requirement(originalRequirement);
@@ -29,13 +38,9 @@ function postRequirement(req, res) {
     });
 }
 
-function checkServerError(res, error) {
-    if (error) {
-        res.status(500).send(error);
-        return error;
-    }
-}
-
+/*
+ * update an existing requirement
+ */
 function putRequirement(req, res) {
     const originalRequirement = {
         name: req.body.name,
@@ -56,10 +61,11 @@ function putRequirement(req, res) {
     });
 }
 
-// ToDo update id
+/*
+ * delete an existing requirement
+ */
 function deleteRequirement(req, res) {
-    const id = parseInt(req.params.id, 10);
-    Requirement.findOneAndRemove({ id: id })
+    Requirement.findOneAndRemove({ _id: req.params.id })
         .then(requirement => {
             if (!checkFound(res, requirement)) return;
             res.status(200).json(requirement);
@@ -70,6 +76,19 @@ function deleteRequirement(req, res) {
         });
 }
 
+/*
+ * if an server error occurs, send an status 500 error response
+ */
+function checkServerError(res, error) {
+    if (error) {
+        res.status(500).send(error);
+        return error;
+    }
+}
+
+/*
+ * check if requirement exists
+ */
 function checkFound(res, requirement) {
     if (!requirement) {
         res.status(404).send('Requirement not found.');
@@ -78,6 +97,9 @@ function checkFound(res, requirement) {
     return requirement;
 }
 
+/*
+ * export functions
+ */
 module.exports = {
     getRequirements,
     postRequirement,
