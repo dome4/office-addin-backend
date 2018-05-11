@@ -30,7 +30,7 @@ router.post('/requirement', (req, res) => {
 });
 
 router.put('/requirement/:id', (req, res) => {
-    requirementService.putHero(req, res);
+    requirementService.putRequirement(req, res);
 });
 
 router.delete('/requirement/:id', (req, res) => {

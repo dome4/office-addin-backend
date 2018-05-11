@@ -16,7 +16,7 @@ function getRequirements(req, res) {
 }
 
 function postRequirement(req, res) {
-    const originalRequirement = { id: req.body.id, name: req.body.name, content: req.body.content };
+    const originalRequirement = { name: req.body.name, content: req.body.content };
     const requirement = new Requirement(originalRequirement);
     requirement.save(error => {
         if (checkServerError(res, error)) {
@@ -38,11 +38,11 @@ function checkServerError(res, error) {
 
 function putRequirement(req, res) {
     const originalRequirement = {
-        id: parseInt(req.params.id, 10),
         name: req.body.name,
         content: req.body.content
     };
-    Requirement.findOne({ id: originalRequirement.id }, (error, requirement) => {
+
+    Requirement.findOne({ _id: req.params.id }, (error, requirement) => {
         if (checkServerError(res, error)) return;
         if (!checkFound(res, requirement)) return;
 
@@ -56,6 +56,7 @@ function putRequirement(req, res) {
     });
 }
 
+// ToDo update id
 function deleteRequirement(req, res) {
     const id = parseInt(req.params.id, 10);
     Requirement.findOneAndRemove({ id: id })
