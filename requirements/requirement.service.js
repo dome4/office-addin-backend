@@ -22,6 +22,18 @@ function getRequirements(req, res) {
 }
 
 /*
+ * get one requirement of the database
+ */
+function getRequirement(req, res) {
+    Requirement.findOne({ _id: req.params.id }, (error, requirement) => {
+        if (checkServerError(res, error)) return;
+        if (!checkFound(res, requirement)) return;
+
+        res.status(200).json(requirement);
+    });
+}
+
+/*
  * post new requirement 
  */
 function postRequirement(req, res) {
@@ -102,6 +114,7 @@ function checkFound(res, requirement) {
  */
 module.exports = {
     getRequirements,
+    getRequirement,
     postRequirement,
     putRequirement,
     deleteRequirement

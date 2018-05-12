@@ -25,6 +25,10 @@ router.get('/requirements', (req, res) => {
     requirementService.getRequirements(req, res);
 });
 
+router.get('/requirement/:id', (req, res) => {
+    requirementService.getRequirement(req, res);
+});
+
 router.post('/requirement', (req, res) => {
     requirementService.postRequirement(req, res);
 });
