@@ -37,7 +37,7 @@ function getRequirement(req, res) {
  * post new requirement 
  */
 function postRequirement(req, res) {
-    const originalRequirement = { name: req.body.name, content: req.body.content };
+    const originalRequirement = { name: req.body.name, description: req.body.description, jsonModel: req.body.jsonModel };
     const requirement = new Requirement(originalRequirement);
     requirement.save(error => {
         if (checkServerError(res, error)) {
@@ -56,7 +56,8 @@ function postRequirement(req, res) {
 function putRequirement(req, res) {
     const originalRequirement = {
         name: req.body.name,
-        content: req.body.content
+        description: req.body.description,
+        jsonModel: req.body.jsonModel
     };
 
     Requirement.findOne({ _id: req.params.id }, (error, requirement) => {
@@ -64,7 +65,8 @@ function putRequirement(req, res) {
         if (!checkFound(res, requirement)) return;
 
         requirement.name = originalRequirement.name;
-        requirement.content = originalRequirement.content;
+        requirement.description = originalRequirement.description;
+        requirement.jsonModel = originalRequirement.jsonModel;
         requirement.save(error => {
             if (checkServerError(res, error)) return;
             res.status(200).json(requirement);
