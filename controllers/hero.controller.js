@@ -1,4 +1,4 @@
-const Hero = require('./hero.model');
+const Hero = require('../models/heroes/hero.model');
 
 require('../mongo').connect();
 

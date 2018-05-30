@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const heroService = require('./heroes/hero.service');
-const requirementService = require('./requirements/requirement.service'); 
+const heroService = require('./controllers/hero.controller');
+const requirementService = require('./controllers/requirement.controller'); 
 
 // Heroes routes
 router.get('/heroes', (req, res) => {

@@ -1,4 +1,4 @@
-const Requirement = require('./requirement.model');
+const Requirement = require('../models/requirements/requirement.model');
 
 /*
  * connect to mongodb
