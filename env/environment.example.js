@@ -1,7 +1,7 @@
 module.exports = {
-    accountName: 'your-cosmosdb-account-name-goes-here',
-    databaseName: 'admin',
+    ACCOUNT_NAME: 'your-cosmosdb-account-name-goes-here',
+    DATABASE_NAME: 'admin',
     // use node.js 3.0 password
-    key: 'your-key-goes-here',
-    port: 10255
+    KEY: 'your-key-goes-here',
+    PORT: 10255
 };

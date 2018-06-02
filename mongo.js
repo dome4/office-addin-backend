@@ -5,10 +5,15 @@ const mongoose = require('mongoose');
 */
 mongoose.Promise = global.Promise;
 
+// environment variables
 const env = require('./env/environment');
+const accountName = process.env.ACCOUNT_NAME || env.ACCOUNT_NAME;
+const databaseName = process.env.DATABASE_NAME || env.DATABASE_NAME;
+const key = process.env.KEY || env.KEY;
+const port = process.env.PORT || env.PORT;
 
 // eslint-disable-next-line max-len
-const mongoUri = `mongodb://${env.accountName}:${env.key}@${env.accountName}.documents.azure.com:${env.port}/${env.databaseName}?ssl=true`;
+const mongoUri = `mongodb://${accountName}:${key}@${accountName}.documents.azure.com:${port}/${databaseName}?ssl=true`;
 
 function connect() {
     mongoose.set('debug', true);
