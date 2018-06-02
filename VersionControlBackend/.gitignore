@@ -40,7 +40,7 @@ jspm_packages
 .vs/
 
 # env file
-env/environment.js
+.env
 
 # ignore js-files
 *.js

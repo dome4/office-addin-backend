@@ -36,6 +36,12 @@
   </PropertyGroup>
   <ItemGroup>
     <TypeScriptCompile Include="server.ts" />
+    <Content Include=".env">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include=".env.example">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include=".gitignore" />
     <Content Include="index.html" />
     <Content Include="LICENSE" />
@@ -49,13 +55,10 @@
     <Content Include="tsconfig.json" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="env\" />
     <Folder Include="heroes\" />
     <Folder Include="requirements\" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="env\environment.example.js" />
-    <Compile Include="env\environment.js" />
     <Compile Include="heroes\hero.model.js" />
     <Compile Include="heroes\hero.service.js" />
     <Compile Include="mongo.ts" />
