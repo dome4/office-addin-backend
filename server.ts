@@ -1,6 +1,21 @@
-﻿import http = require('http');
-var port = process.env.port || 1337
-http.createServer(function (req, res) {
-    res.writeHead(200, { 'Content-Type': 'text/plain' });
-    res.end('Hello World\n');
-}).listen(port);
+﻿const express = require('express');
+const bodyParser = require('body-parser');
+const path = require('path');
+const routes = require('./routes');
+
+const root = './';
+const port = process.env.PORT || 1337;
+var cors = require('cors')
+const app = express();
+
+app.use(cors());
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.static(path.join(root, 'dist')));
+app.use('/api', routes);
+app.get('*', (req, res) => {
+    res.sendFile('./index.html', { root });
+});
+
+app.listen(port, () => console.log(`API running on localhost:${port}`));
