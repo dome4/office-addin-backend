@@ -10,7 +10,7 @@ mongoose.Promise = global.Promise;
 var accountName = null;
 var databaseName = null;
 var key = null;
-var port = null;
+var db_port = null;
 
 /**
  * use environment variables or alternatively variables of environment.js file
@@ -20,7 +20,7 @@ try {
         accountName = process.env.ACCOUNT_NAME;
         databaseName = process.env.DATABASE_NAME;
         key = process.env.KEY;
-        port = process.env.DB_PORT;
+        db_port = process.env.DB_PORT;
     } else {
 
         const env = require('./env/environment');
@@ -28,20 +28,23 @@ try {
         accountName = env.ACCOUNT_NAME;
         databaseName = env.DATABASE_NAME;
         key = env.KEY;
-        port = env.DB_PORT;
+        db_port = env.DB_PORT;
     }
 } catch (e) {
-    if (e instanceof Error && e.code === 'MODULE_NOT_FOUND') {
+    // check if the environment.js file is missing
+    if (e instanceof Error && e.message.indexOf('Cannot find module') != -1) {
         console.error('----------------------------------------------------------');
-        console.error('environment variables missing and environment.js not found');
+        console.error('environment variables missing and environment.js not found or another error occured');
+        console.error(e.message);
         console.error('----------------------------------------------------------');
     } else {
         throw e;
     }
 }
 
+
 // create db connection strings
-const mongoUri = `mongodb://${accountName}:${key}@${accountName}.documents.azure.com:${port}/${databaseName}?ssl=true`;
+const mongoUri = `mongodb://${accountName}:${key}@${accountName}.documents.azure.com:${db_port}/${databaseName}?ssl=true`;
 
 /**
  * connect to mongoDB

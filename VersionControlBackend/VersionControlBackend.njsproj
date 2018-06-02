@@ -58,7 +58,7 @@
     <Compile Include="env\environment.js" />
     <Compile Include="heroes\hero.model.js" />
     <Compile Include="heroes\hero.service.js" />
-    <Compile Include="mongo.js" />
+    <Compile Include="mongo.ts" />
     <Compile Include="requirements\requirement.model.js" />
     <Compile Include="requirements\requirement.service.js" />
     <Compile Include="routes.js" />
