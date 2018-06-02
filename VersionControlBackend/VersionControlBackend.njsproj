@@ -35,6 +35,24 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="interfaces\requirement-relation.interface.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="interfaces\requirement-template-part.interface.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="interfaces\requirement.interface.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="schemas\requirement-relation.schema.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="schemas\requirement-template-part.schema.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="schemas\requirement.schema.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="server.ts" />
     <Content Include=".env">
       <SubType>Code</SubType>
@@ -56,6 +74,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="heroes\" />
+    <Folder Include="controllers\" />
+    <Folder Include="interfaces\" />
+    <Folder Include="schemas\" />
     <Folder Include="requirements\" />
   </ItemGroup>
   <ItemGroup>
