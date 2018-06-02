@@ -3,5 +3,5 @@ module.exports = {
     DATABASE_NAME: 'admin',
     // use node.js 3.0 password
     KEY: 'your-key-goes-here',
-    PORT: 10255
+    DB_PORT: 10255
 };

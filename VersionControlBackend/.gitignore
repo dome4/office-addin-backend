@@ -45,3 +45,6 @@ env/environment.js
 # ignore js-files
 *.js
 *.js.map
+
+# ignore build files
+*.pubxml

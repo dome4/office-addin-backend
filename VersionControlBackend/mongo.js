@@ -20,7 +20,7 @@ try {
         accountName = process.env.ACCOUNT_NAME;
         databaseName = process.env.DATABASE_NAME;
         key = process.env.KEY;
-        port = process.env.PORT;
+        port = process.env.DB_PORT;
     } else {
 
         const env = require('./env/environment');
@@ -28,7 +28,7 @@ try {
         accountName = env.ACCOUNT_NAME;
         databaseName = env.DATABASE_NAME;
         key = env.KEY;
-        port = env.PORT;
+        port = env.DB_PORT;
     }
 } catch (e) {
     if (e instanceof Error && e.code === 'MODULE_NOT_FOUND') {
