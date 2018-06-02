@@ -10,13 +10,13 @@
     "name": "Dominic"
   },
   "devDependencies": {
-    "@types/node": "^6.0.112"
-  },
-  "dependencies": {
+    "@types/node": "^6.0.112",
     "@types/bson": "^1.0.8",
     "@types/events": "^1.2.0",
     "@types/mongodb": "^3.0.19",
-    "@types/mongoose": "^5.0.15",
+    "@types/mongoose": "^5.0.15"
+  },
+  "dependencies": {
     "body-parser": "^1.18.3",
     "cors": "^2.8.4",
     "dotenv": "^5.0.1",
