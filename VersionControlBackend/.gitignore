@@ -41,3 +41,7 @@ jspm_packages
 
 # env file
 env/environment.js
+
+# ignore js-files
+*.js
+*.js.map
