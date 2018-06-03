@@ -38,9 +38,6 @@
     <TypeScriptCompile Include="controllers\base.controller.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="controllers\helpers.controller.ts">
-      <SubType>Code</SubType>
-    </TypeScriptCompile>
     <TypeScriptCompile Include="controllers\requirement.controller.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
@@ -68,12 +65,9 @@
   <ItemGroup>
     <Folder Include="controllers\" />
     <Folder Include="models\" />
-    <Folder Include="requirements\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="mongo.ts" />
-    <Compile Include="requirements\requirement.model.js" />
-    <Compile Include="requirements\requirement.service.js" />
     <Compile Include="routes.ts" />
   </ItemGroup>
   <!-- Do not delete the following Import Project.  While this appears to do nothing it is a marker for setting TypeScript properties before our import that depends on them. -->
