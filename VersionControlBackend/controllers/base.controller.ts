@@ -1,5 +1,5 @@
 ﻿import { Router } from 'express';
-import pluralize from "pluralize";
+import * as pluralize from 'pluralize';
 import { createJSONResponse, checkServerError } from './helpers.controller';
 
 /**
@@ -120,6 +120,10 @@ export default class BaseController {
             .limit(MAX_RESULTS)
             .then((modelInstances) => {
                 var response = {};
+
+                // ToDo: why as an array?
+                // pluralize is only used here
+
                 response[pluralize(this.modelName)] = modelInstances;
                 return response;
             });
@@ -168,5 +172,5 @@ export default class BaseController {
         });
 
         return router;
-    }  
+    }   
 }
