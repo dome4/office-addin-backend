@@ -1,5 +1,6 @@
 ﻿import { Router } from 'express';
 import { createJSONResponse, checkServerError } from './helpers.controller';
+import { Model, Document } from 'mongoose';
 
 
 
@@ -17,7 +18,7 @@ const MAX_RESULTS = 100;
 export default class BaseController {
 
     // ToDo data types
-    model: any = null;
+    model: Model<Document> = null;
     modelName: string = null;
     id: any = null;
 
@@ -37,15 +38,24 @@ export default class BaseController {
     /**
      * create a MongoDB record
      * 
-     * @param data
+     * @param data Request Body
      */
-    create(data) {
-        return this.model
-            .create(data)
-            .then((modelInstance) => {
-                var response = {};
-                response[this.modelName] = modelInstance;
-                return response;
+    create(data, response) {
+        this.model
+            .create(data,
+            (error, modelInstance) => {
+
+                if (error) {
+                    // log error and send status 500 response
+                    console.log(error);
+                    response.status(500).send(error);
+                    return;
+
+                } else {
+                    // log success and send created model instance
+                    response.status(201).json(modelInstance);
+                    console.log('modelInstance created successfully!');
+                }  
             });
     }
 
@@ -144,10 +154,7 @@ export default class BaseController {
 
         // create a new model
         router.post("/", (req, res) => {
-            this
-                .create(req.body)
-                .then(createJSONResponse(res))
-                .then(null, checkServerError(res));
+            this.create(req.body, res);                
         });
 
         router.get("/:id", (req, res) => {
