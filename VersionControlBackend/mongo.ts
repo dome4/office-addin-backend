@@ -1,11 +1,11 @@
-const mongoose = require('mongoose');
+import * as mongoose from 'mongoose';
 var env = require('dotenv').load();   
 
 /**
 * Set to Node.js native promises
 * Per http://mongoosejs.com/docs/promises.html
 */
-mongoose.Promise = global.Promise;
+(<any>mongoose).Promise = global.Promise;
 
 // create db connection strings
 const mongoUri = `mongodb://${process.env.ACCOUNT_NAME}:${process.env.DB_KEY}@${process.env.ACCOUNT_NAME}.documents.azure.com:${process.env.DB_PORT}/${process.env.DATABASE_NAME}?ssl=true`;
