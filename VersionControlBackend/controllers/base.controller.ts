@@ -106,7 +106,7 @@ export default class BaseController {
                 Object.keys(data)
                     .forEach((attribute) => {
 
-                        if (attribute !== this.id && attribute !== "_id" && attribute !== "timestamp") {
+                        if (attribute !== this.id && attribute !== "_id") {
 
                             if (modelInstance[attribute]) {
 
