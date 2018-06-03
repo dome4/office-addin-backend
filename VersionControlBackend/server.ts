@@ -8,6 +8,11 @@ const port = process.env.PORT || 1337;
 var cors = require('cors')
 const app = express();
 
+/*
+ * connect to mongodb
+ */
+require('./mongo').connect();
+
 app.use(cors());
 
 app.use(bodyParser.json());
