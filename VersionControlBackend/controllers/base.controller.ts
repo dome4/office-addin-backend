@@ -68,7 +68,17 @@ export default class BaseController {
         docquery
             .exec()
             .then((modelInstances) => {
-                response.status(200).json(modelInstances);
+
+                if (modelInstances) {
+
+                    // if model exists
+                    response.status(200).json(modelInstances);
+                } else {
+
+                    // if model not exists
+                    response.status(404).json({ error: 'ressource not found' });                            
+                }
+                
             })
             .catch(error => {
                 response.status(500).send(error);
