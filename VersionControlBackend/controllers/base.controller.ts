@@ -39,6 +39,7 @@ export default class BaseController {
      * create a MongoDB record
      * 
      * @param data Request Body
+     * @param reponse HttpResponse
      */
     create(data, response) {
         this.model
@@ -62,26 +63,30 @@ export default class BaseController {
     /**
      * reads a model by it’s primary key
      * 
-     * @param id
+     * @param id Rrimary Key
+     * @param reponse HttpResponse
      */
-    read(id) {
+    read(id, response) {
         var filter = {};
         filter[this.id] = id;
 
-        return this.model
-            .findOne(filter)
-            .then((modelInstance) => {
-                var response = {};
-                response[this.modelName] = modelInstance;
-                return response;
+        const docquery = this.model.findOne(filter)
+        docquery
+            .exec()
+            .then((modelInstances) => {
+                response.status(200).json(modelInstances);
+            })
+            .catch(error => {
+                response.status(500).send(error);
+                return;
             });
     }
 
     /**
      * update an existing model
      * 
-     * @param id
-     * @param data
+     * @param id Rrimary Key
+     * @param data Request Body
      */
     update(id, data) {
         var filter = {};
@@ -152,11 +157,9 @@ export default class BaseController {
             this.create(req.body, res);                
         });
 
+        // get one model by id
         router.get("/:id", (req, res) => {
-            this
-                .read(req.params.id)
-                .then(createJSONResponse(res))
-                .then(null, checkServerError(res));
+            this.read(req.params.id, res);
         });
 
         router.put("/:id", (req, res) => {
