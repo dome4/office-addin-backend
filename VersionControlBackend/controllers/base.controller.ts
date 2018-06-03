@@ -141,16 +141,11 @@ export default class BaseController {
     }
 
     /**
-     * 
+     * routes for only one model
      * 
      */
-    route() {
-        const router = new Router();
-
-        // get all models
-        router.get("/", (req, res) => {
-            this.list(res);
-        });
+    singularRoute() {
+        const router = new Router();      
 
         // create a new model
         router.post("/", (req, res) => {
@@ -179,5 +174,20 @@ export default class BaseController {
         });
 
         return router;
-    }   
+    } 
+
+    /**
+     * routes for a few models
+     * 
+     */
+    pluralRoute() {
+        const router = new Router();
+
+        // get all models
+        router.get("/", (req, res) => {
+            this.list(res);
+        });
+
+        return router;
+    }
 }

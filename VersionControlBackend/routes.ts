@@ -12,7 +12,8 @@ var router = Router();
  * 
  */
 try {
-    router.use('/requirements', new RequirementController().route());
+    router.use('/requirement', new RequirementController().singularRoute());
+    router.use('/requirements', new RequirementController().pluralRoute());
 } catch (e) {
     console.error(e);
 }

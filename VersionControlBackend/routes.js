@@ -12,7 +12,8 @@ var router = express_1.Router();
  *
  */
 try {
-    router.use('/requirements', new requirement_controller_1.RequirementController().route());
+    router.use('/requirement', new requirement_controller_1.RequirementController().singularRoute());
+    router.use('/requirements', new requirement_controller_1.RequirementController().pluralRoute());
 }
 catch (e) {
     console.error(e);
