@@ -1,44 +1,21 @@
-const express = require('express');
-const router = express.Router();
-const heroService = require('./heroes/hero.service');
-const requirementService = require('./requirements/requirement.service'); 
-
-// Heroes routes
-router.get('/heroes', (req, res) => {
-    heroService.getHeroes(req, res);
-});
-
-router.post('/hero', (req, res) => {
-    heroService.postHero(req, res);
-});
-
-router.put('/hero/:id', (req, res) => {
-    heroService.putHero(req, res);
-});
-
-router.delete('/hero/:id', (req, res) => {
-    heroService.deleteHero(req, res);
-});
-
-// Requirement routes
-router.get('/requirements', (req, res) => {
-    requirementService.getRequirements(req, res);
-});
-
-router.get('/requirement/:id', (req, res) => {
-    requirementService.getRequirement(req, res);
-});
-
-router.post('/requirement', (req, res) => {
-    requirementService.postRequirement(req, res);
-});
-
-router.put('/requirement/:id', (req, res) => {
-    requirementService.putRequirement(req, res);
-});
-
-router.delete('/requirement/:id', (req, res) => {
-    requirementService.deleteRequirement(req, res);
-});
-
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var express_1 = require("express");
+var requirement_controller_1 = require("./controllers/requirement.controller");
+/**
+ * create router
+ *
+ */
+var router = express_1.Router();
+/*
+ * cretae requirements routes
+ *
+ */
+try {
+    router.use('/requirements', new requirement_controller_1.RequirementController().route());
+}
+catch (e) {
+    console.error(e);
+}
 module.exports = router;
+//# sourceMappingURL=routes.js.map

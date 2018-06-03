@@ -1,0 +1,17 @@
+﻿import BaseController from './base.controller';
+import { Requirement } from '../models/requirement.model';
+
+/**
+ * 
+ * 
+ */
+export class RequirementController extends BaseController {
+
+    /**
+     * call super constructor
+     * 
+     */
+    constructor() {
+        super(Requirement, '_id');
+    }
+}
