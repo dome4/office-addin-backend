@@ -2,24 +2,20 @@
 import { createJSONResponse, checkServerError } from './helpers.controller';
 import { Model, Document, model } from 'mongoose';
 
-
-
 /**
  * max number of results for list()
  * 
  */
 const MAX_RESULTS = 100;
 
-
 /**
- * 
+ * base controller
  * 
  */
 export default class BaseController {
 
-    // ToDo data types
+    // controller variables
     model: Model<Document> = null;
-    modelName: string = null;
     id: any = null;
 
     /**
@@ -30,8 +26,7 @@ export default class BaseController {
      *       
      */
     constructor(model, id) {
-        this.model = model;
-        this.modelName = model.modelName.toLowerCase();
+        this.model = model;       
         this.id = id;
     }
 
