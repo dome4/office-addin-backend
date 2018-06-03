@@ -1,11 +1,5 @@
 ﻿import { Schema, model } from 'mongoose';
 
-const CountrySchema = new Schema({
-    isocode: String,
-    name: String,
-    description: String
-});
-
 /**
  * schema of a relation between requirements
  * 

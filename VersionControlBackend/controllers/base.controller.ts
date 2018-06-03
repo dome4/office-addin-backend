@@ -1,6 +1,6 @@
 ﻿import { Router } from 'express';
 import { createJSONResponse, checkServerError } from './helpers.controller';
-import { Model, Document } from 'mongoose';
+import { Model, Document, model } from 'mongoose';
 
 
 
@@ -87,26 +87,53 @@ export default class BaseController {
      * 
      * @param id Rrimary Key
      * @param data Request Body
+     * @param reponse HttpResponse
      */
-    update(id, data) {
+    update(id, data, response) {
         var filter = {};
         filter[this.id] = id;
 
-        return this.model
-            .findOne(filter)
-            .then((modelInstance) => {
-                for (var attribute in data) {
-                    if (data.hasOwnProperty(attribute) && attribute !== this.id && attribute !== "_id") {
-                        modelInstance[attribute] = data[attribute];
-                    }
-                }
+        const docquery = this.model.findOne(filter)
+        docquery
+            .exec()
+            .then((modelInstance) => {                   
+
+                // update existing model
+                Object.keys(data)
+                    .forEach((attribute) => {
+
+                        if (attribute !== this.id && attribute !== "_id" && attribute !== "timestamp") {
+
+                            if (modelInstance[attribute]) {
+
+                                // update existing attributes
+                                modelInstance[attribute] = data[attribute];
+                            }
+                            else if (modelInstance.schema.path(attribute)) {
+
+                                // schema has attribute bus was not used before in model
+                                modelInstance[attribute] = data[attribute];
+
+                            } else {
+
+                                // attribute not in schema
+                                throw new Error(`attribute not in schema: ${attribute}`);                                
+                            }
+                        }
+                    });
 
                 return modelInstance.save();
             })
             .then((modelInstance) => {
-                var response = {};
-                response[this.modelName] = modelInstance;
-                return response;
+
+                // return model
+                response.status(200).json(modelInstance);
+                console.log('modelInstance updated successfully!');
+            }).catch((error) => {
+
+                // send error message
+                response.status(500).json({ error: error.message });              
+                return;
             });
     }
 
@@ -162,11 +189,9 @@ export default class BaseController {
             this.read(req.params.id, res);
         });
 
-        router.put("/:id", (req, res) => {
-            this
-                .update(req.params.id, req.body)
-                .then(createJSONResponse(res))
-                .then(null, checkServerError(res));
+        // update one model by id
+        router.put("/:id", (req, res) => {            
+            this.update(req.params.id, req.body, res);
         });
 
         router.delete("/:id", (req, res) => {
