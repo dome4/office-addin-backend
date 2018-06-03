@@ -141,16 +141,27 @@ export default class BaseController {
      * delete an existing model
      * 
      * @param id
+     * @param reponse HttpResponse
      */
-    delete(id) {
-        const filter = {};
+    delete(id, response) {   
+        var filter = {};
         filter[this.id] = id;
 
-        return this.model
-            .remove(filter)
-            .then(() => {
-                return {};
+        const docquery = this.model.findOne(filter);
+        docquery
+            .exec()
+            .then((modelInstance) => {
+
+                // remove model
+                modelInstance.remove();
+
+                response.status(200).json(modelInstance);
+                console.log('Requirement deleted successfully!');
             })
+            .catch(error => {
+                response.status(404).send({ error: error.message });
+                return;
+            });
     }
 
     /**
@@ -194,11 +205,9 @@ export default class BaseController {
             this.update(req.params.id, req.body, res);
         });
 
+        // delete one model by id
         router.delete("/:id", (req, res) => {
-            this
-                .delete(req.params.id)
-                .then(createJSONResponse(res))
-                .then(null, checkServerError(res));
+            this.delete(req.params.id, res);
         });
 
         return router;
