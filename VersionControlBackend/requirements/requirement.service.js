@@ -3,7 +3,7 @@ const Requirement = require('./requirement.model');
 /*
  * connect to mongodb
  */
-require('../mongo').connect();
+// require('../mongo').connect();
 
 /*
  * get all requirements of the database

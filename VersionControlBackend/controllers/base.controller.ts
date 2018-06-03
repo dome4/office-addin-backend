@@ -1,6 +1,7 @@
 ﻿import { Router } from 'express';
-import * as pluralize from 'pluralize';
 import { createJSONResponse, checkServerError } from './helpers.controller';
+
+
 
 /**
  * max number of results for list()
@@ -113,19 +114,19 @@ export default class BaseController {
     /**
      * lists all models
      * 
+     * @param response HttpResponse
      */
-    list() {
-        return this.model
-            .find({})
-            .limit(MAX_RESULTS)
+    list(response) {
+
+        const docquery = this.model.find({}).limit(MAX_RESULTS);
+        docquery
+            .exec()
             .then((modelInstances) => {
-                var response = {};
-
-                // ToDo: why as an array?
-                // pluralize is only used here
-
-                response[pluralize(this.modelName)] = modelInstances;
-                return response;
+                response.status(200).json(modelInstances);
+            })
+            .catch(error => {
+                response.status(500).send(error);
+                return;
             });
     }
 
@@ -136,13 +137,12 @@ export default class BaseController {
     route() {
         const router = new Router();
 
+        // get all models
         router.get("/", (req, res) => {
-            this
-                .list()
-                .then(createJSONResponse(res))
-                .then(null, checkServerError(res));
+            this.list(res);
         });
 
+        // create a new model
         router.post("/", (req, res) => {
             this
                 .create(req.body)
