@@ -37,19 +37,53 @@ const RequirementSchema: Schema = new Schema(
         description: String,      
         name: String,
         duration: Number,
-        responsible: Schema.Types.ObjectId,
-        category: Schema.Types.ObjectId,
-        type: Schema.Types.ObjectId,
-        stakeholder: Schema.Types.ObjectId,
-        contractor: Schema.Types.ObjectId,
+        responsible: String,
+        category: {
+            type: String,
+            enum: [
+                'Geschäftliche Anforderungen',
+                'Normen und Gesetze',
+                'Produkteigenschaften',
+                'Anforderungen an den Produktlebenszyklus',
+                'Designanforderungen'
+            ]
+        },
+        type: {
+            type: String,
+            enum: [
+                'FA',
+                'NFA'
+            ]
+        },
+        stakeholder: String,
+        contractor: String,
         dueDate: Date,
-        status: Schema.Types.ObjectId,
+        status: {
+            type: String,
+            enum: [
+                'Maßnahme festgelegt',
+                'Ablauf defniert',
+                'Maßnahmenbearbeitung gestartet',
+                'Maßnahme umgesetzt',
+                'Maßnahme abgeschlossen'
+            ]
+        },
         reason: {},
         descriptionParts: [RequirementTemplatePartSchema],
         relations: [RequirementRelationSchema],
-        priority: Number,
+        priority: {
+            type: String,
+            enum: [
+                'Must-have',
+                'Should-have',
+                'Nice-to-have',
+                'Soon-to-be'
+            ]
+        },
         keyWords: [String],
         acceptanceCriteria: String,
+
+        // ToDo write method which compares description template with given description parts
         descriptionTemplate: Schema.Types.ObjectId
     },
     {
