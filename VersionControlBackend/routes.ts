@@ -13,6 +13,11 @@ var router = Router();
  * 
  */
 try {
+
+    // auth middleware  
+    router.use((req, res, next) => {
+        new UserController().authMiddleware(req, res, next);
+    });
     
     // requirements
     router.use('/requirement', new RequirementController().singularRoute());

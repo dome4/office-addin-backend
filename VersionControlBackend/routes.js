@@ -13,6 +13,10 @@ var router = express_1.Router();
  *
  */
 try {
+    // auth middleware  
+    router.use(function (req, res, next) {
+        new user_controller_1.UserController().authMiddleware(req, res, next);
+    });
     // requirements
     router.use('/requirement', new requirement_controller_1.RequirementController().singularRoute());
     router.use('/requirements', new requirement_controller_1.RequirementController().pluralRoute());
