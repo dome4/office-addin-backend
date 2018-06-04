@@ -1,5 +1,6 @@
 ﻿import { Schema, model } from 'mongoose';
-
+import { RequirementRelation } from './requirement-relation.model';
+import { RequirementTemplatePart } from './requirement-template-part.model';
 /**
  * requirement schema
  * 
