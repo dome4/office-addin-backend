@@ -107,7 +107,7 @@ export class UserController extends BaseController {
     authMiddleware(req, res, next) {
 
         // ignore middleware for creating the auth token
-        if (req.originalUrl === '/api/user/authenticate') {
+        if (req.originalUrl.indexOf('/api/user/authenticate') !== -1) {       
 
             return next();
         } else {
