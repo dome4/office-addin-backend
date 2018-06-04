@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = require("express");
 var requirement_controller_1 = require("./controllers/requirement.controller");
+var user_controller_1 = require("./controllers/user.controller");
 /**
  * create router
  *
@@ -12,8 +13,13 @@ var router = express_1.Router();
  *
  */
 try {
+    // requirements
     router.use('/requirement', new requirement_controller_1.RequirementController().singularRoute());
     router.use('/requirements', new requirement_controller_1.RequirementController().pluralRoute());
+    // users
+    router.use('/user', new user_controller_1.UserController().singularRoute());
+    router.use('/users', new user_controller_1.UserController().pluralRoute());
+    router.use('/authenticate', new user_controller_1.UserController().authenticateRoute());
 }
 catch (e) {
     console.error(e);
