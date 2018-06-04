@@ -1,5 +1,5 @@
-﻿import BaseController from './base.controller';
-import { Requirement } from '../models/requirement.model';
+﻿import BaseController from '../base.controller';
+import { Requirement } from '../../models/requirement/requirement.model';
 
 /**
  * 

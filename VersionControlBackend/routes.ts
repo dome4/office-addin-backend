@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { RequirementController } from './controllers/requirement.controller';
+import { RequirementController } from './controllers/requirement/requirement.controller';
 import { UserController } from './controllers/user.controller';
 
 /**

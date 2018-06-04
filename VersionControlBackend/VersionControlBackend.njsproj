@@ -38,13 +38,13 @@
     <TypeScriptCompile Include="controllers\base.controller.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="controllers\requirement.controller.ts">
+    <TypeScriptCompile Include="controllers\requirement\requirement.controller.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
     <TypeScriptCompile Include="controllers\user.controller.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="models\requirement.model.ts">
+    <TypeScriptCompile Include="models\requirement\requirement.model.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
     <TypeScriptCompile Include="models\user.model.ts">
@@ -70,7 +70,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="controllers\" />
+    <Folder Include="controllers\requirement\" />
     <Folder Include="models\" />
+    <Folder Include="models\requirement\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="mongo.ts" />

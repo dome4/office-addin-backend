@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = require("express");
-var requirement_controller_1 = require("./controllers/requirement.controller");
+var requirement_controller_1 = require("./controllers/requirement/requirement.controller");
 var user_controller_1 = require("./controllers/user.controller");
 /**
  * create router
