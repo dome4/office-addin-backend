@@ -48,7 +48,7 @@ const RequirementSchema: Schema = new Schema(
             {
                 // [RequirementTemplatePartSchema] could be equivalent, just seperated files for seperate controllers
                 type: Schema.Types.ObjectId,
-                ref: 'RequirementTemplatePart'
+                ref: 'Requirement'
             }
             ],
         relations: [

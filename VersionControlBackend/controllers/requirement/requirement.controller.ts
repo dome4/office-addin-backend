@@ -23,7 +23,7 @@ export class RequirementController extends BaseController {
  */
     list(response) {
 
-        const docquery = Requirement.find({}).populate({ path: 'descriptionParts', model: RequirementTemplatePart });
+        const docquery = Requirement.find({}).populate({ path: 'descriptionParts', model: Requirement });
         docquery
             .exec()
             .then((modelInstances) => {
