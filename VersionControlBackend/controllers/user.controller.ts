@@ -3,6 +3,7 @@ import { User } from '../models/user.model';
 import { Router } from 'express';
 import { Model } from 'mongoose';
 const jwt = require('jsonwebtoken');
+var env = require('dotenv').load(); 
 
 /**
  * 
@@ -72,8 +73,11 @@ export class UserController extends BaseController {
                         const payload = {
                             admin: user.schema.path('admin')
                         };
-                        var token = jwt.sign(payload, app.get('superSecret'), {
-                            expiresInMinutes: 1440 // expires in 24 hours
+                        var token = jwt.sign(payload, process.env.AUTH_SECRET, {
+
+                            // expire time in seconds
+                            // 86400 secs = 24 hours
+                            expiresIn: 86400
                         });
 
                         // return the information including token as JSON
