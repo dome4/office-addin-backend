@@ -61,14 +61,8 @@ export class UserController extends BaseController {
                     res.status(404).json({ success: false, message: 'Authentication failed. User not found.' });
                 } else if (user) {
 
-                    //const UserModel: Model<User> = null;
-
-                    console.log('db test');
-                    console.log(user.password);
-                    console.log('db test');
-
-                                // check if password matches
-                    if (user.schema.path('password') !== req.body.password) {
+                    // check if password matches
+                    if (user['password'] !== req.body.password) {
                         res.status(400).json({ success: false, message: 'Authentication failed. Wrong password.' });
                     } else {
 
