@@ -20,15 +20,16 @@ export class UserController extends BaseController {
     }
 
     /**
-     * routes for authentication
+     * override super method
+     * routes for only one model
      * 
      */
-    authenticateRoute() {
+    singularRoute() {
 
-        const router = new Router(); 
+        const router = super.singularRoute();
 
         // get one model by id
-        router.post("/", (req, res) => {
+        router.post('/authenticate', (req, res) => {
             // fixed post issue -> post request has only body not params
             this.createAuthToken(req, res);
         });
@@ -36,7 +37,12 @@ export class UserController extends BaseController {
         return router;
     }
 
-
+    /**
+     * create an user token which is valid for 24 hours
+     * 
+     * @param req HttpRequest
+     * @param res HttpResponse
+     */
     createAuthToken(req, res) {
 
         var userName: string = null;

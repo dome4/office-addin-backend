@@ -19,7 +19,6 @@ try {
     // users
     router.use('/user', new user_controller_1.UserController().singularRoute());
     router.use('/users', new user_controller_1.UserController().pluralRoute());
-    router.use('/authenticate', new user_controller_1.UserController().authenticateRoute());
 }
 catch (e) {
     console.error(e);
