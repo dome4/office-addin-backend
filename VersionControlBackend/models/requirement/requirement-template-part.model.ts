@@ -17,4 +17,4 @@ const RequirementTemplatePartSchema: Schema = new Schema(
  * create requirement template part model and export model
  * 
  */
-export const Requirement = model('RequirementTemplatePart', RequirementTemplatePartSchema);
+export const RequirementTemplatePart = model('RequirementTemplatePart', RequirementTemplatePartSchema);

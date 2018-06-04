@@ -17,4 +17,4 @@ const RequirementRelationSchema: Schema = new Schema(
  * create requirement relation model and export model
  * 
  */
-export const Requirement = model('RequirementRelation', RequirementRelationSchema);
+export const RequirementRelation = model('RequirementRelation', RequirementRelationSchema);
