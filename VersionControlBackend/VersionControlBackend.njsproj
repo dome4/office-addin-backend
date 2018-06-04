@@ -44,6 +44,12 @@
     <TypeScriptCompile Include="controllers\user.controller.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="models\requirement\requirement-relation.model.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="models\requirement\requirement-template-part.model.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="models\requirement\requirement.model.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
