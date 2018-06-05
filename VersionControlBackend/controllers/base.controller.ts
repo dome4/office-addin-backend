@@ -41,8 +41,7 @@ export default class BaseController {
             (error, modelInstance) => {
 
                 if (error) {
-                    // log error and send status 500 response
-                    console.log(error);
+                    // send status 500 response
                     response.status(500).send(error);
                     return;
 
