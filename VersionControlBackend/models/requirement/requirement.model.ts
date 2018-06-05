@@ -1,5 +1,6 @@
 ﻿import { Schema, model } from 'mongoose';
 import { RequirementTemplatePart } from './requirement-template-part.model';
+import { RequirementRelation } from './requirement-relation.model';
 
 /**
  * requirement schema
@@ -103,7 +104,6 @@ RequirementSchema.path('descriptionParts').validate( async (values) => {
             if (!modelInstance) {
 
                 // model does not exist
-                console.log('model not found');
                 validateFlag = false;
             } else {
 
@@ -115,3 +115,35 @@ RequirementSchema.path('descriptionParts').validate( async (values) => {
     return validateFlag;
 
 }, 'Description part with given id does not exist');
+
+/**
+ * custom validation -> mongoose only checks if the ObjectId is valid in general
+ * validate if a requirement-relation-model with the given ObjectId exists
+ * 
+ */
+RequirementSchema.path('relations').validate(async (values) => {
+
+    // validate flag
+    var validateFlag = true;
+
+    // values is an array
+    for (let id of values) {
+
+        // check if model with given id exists
+        const docquery = await RequirementRelation.findById({ _id: id }, (error, modelInstance) => {
+
+
+            if (!modelInstance) {
+
+                // model does not exist
+                validateFlag = false;
+            } else {
+
+                // model found -> do nothing
+            }
+        });
+    }
+
+    return validateFlag;
+
+}, 'Relation with given id does not exist');
