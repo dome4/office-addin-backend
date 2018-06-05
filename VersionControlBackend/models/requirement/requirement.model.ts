@@ -1,4 +1,5 @@
 ﻿import { Schema, model } from 'mongoose';
+import { RequirementTemplatePart } from './requirement-template-part.model';
 
 /**
  * requirement schema
@@ -81,3 +82,40 @@ const RequirementSchema: Schema = new Schema(
  * 
  */
 export const Requirement = model('Requirement', RequirementSchema);
+
+/**
+ * custom validation -> mongoose only checks if the ObjectId is valid in general
+ * validate if a requirement-template-part-model with the given ObjectId exists
+ * 
+ */
+RequirementSchema.path('descriptionParts').validate((values) => {
+
+    // validate flag
+    var validateFlag = true;
+
+    // values is an array
+    for (let id of values) {
+
+        // check if model with given id exists
+        const docquery = RequirementTemplatePart.findById({ _id: id }, (error, modelInstance) => {
+
+            
+            if (!modelInstance) {
+
+                // model does not exist
+                console.log('model not found');
+                validateFlag = false;
+            } else {
+
+                // model found -> do nothing
+            }
+        }); 
+    }
+
+    // gets logged before callback is finished
+    // ToDo: fix callback issue
+    console.log('testpurpose');
+
+    return validateFlag;
+
+}, 'Description part with given id does not exist');
