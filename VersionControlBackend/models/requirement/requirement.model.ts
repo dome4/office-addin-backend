@@ -88,7 +88,7 @@ export const Requirement = model('Requirement', RequirementSchema);
  * validate if a requirement-template-part-model with the given ObjectId exists
  * 
  */
-RequirementSchema.path('descriptionParts').validate((values) => {
+RequirementSchema.path('descriptionParts').validate( async (values) => {
 
     // validate flag
     var validateFlag = true;
@@ -97,7 +97,7 @@ RequirementSchema.path('descriptionParts').validate((values) => {
     for (let id of values) {
 
         // check if model with given id exists
-        const docquery = RequirementTemplatePart.findById({ _id: id }, (error, modelInstance) => {
+        const docquery = await RequirementTemplatePart.findById({ _id: id }, (error, modelInstance) => {
 
             
             if (!modelInstance) {
@@ -111,10 +111,6 @@ RequirementSchema.path('descriptionParts').validate((values) => {
             }
         }); 
     }
-
-    // gets logged before callback is finished
-    // ToDo: fix callback issue
-    console.log('testpurpose');
 
     return validateFlag;
 
