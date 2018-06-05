@@ -38,6 +38,9 @@
     <TypeScriptCompile Include="controllers\base.controller.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="controllers\requirement\requirement-template-part.controller.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="controllers\requirement\requirement.controller.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>

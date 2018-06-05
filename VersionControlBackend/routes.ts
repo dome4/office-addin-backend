@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import { RequirementController } from './controllers/requirement/requirement.controller';
 import { UserController } from './controllers/user.controller';
+import { RequirementTemplatePartController } from './controllers/requirement/requirement-template-part.controller';
 
 /**
  * create router
@@ -22,6 +23,10 @@ try {
     // requirements
     router.use('/requirement', new RequirementController().singularRoute());
     router.use('/requirements', new RequirementController().pluralRoute());
+
+    // requirement template parts
+    router.use('/requirement-part', new RequirementTemplatePartController().singularRoute());
+    router.use('/requirement-parts', new RequirementTemplatePartController().pluralRoute());
 
     // users
     router.use('/user', new UserController().singularRoute());
