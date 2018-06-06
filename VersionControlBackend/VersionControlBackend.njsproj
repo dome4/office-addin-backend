@@ -62,6 +62,9 @@
     <TypeScriptCompile Include="models\user.model.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="seeder.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="server.ts" />
     <Content Include=".env">
       <SubType>Code</SubType>
