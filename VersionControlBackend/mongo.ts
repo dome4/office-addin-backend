@@ -7,16 +7,13 @@ var env = require('dotenv').load();
 */
 (<any>mongoose).Promise = global.Promise;
 
-// create db connection strings
-const mongoUri = `mongodb://${process.env.ACCOUNT_NAME}:${process.env.DB_KEY}@${process.env.ACCOUNT_NAME}.documents.azure.com:${process.env.DB_PORT}/${process.env.DATABASE_NAME}?ssl=true`;
-
 /**
  * connect to mongoDB
  * 
  */
 function connect() {
     mongoose.set('debug', true);
-    mongoose.connect(mongoUri);
+    mongoose.connect(process.env.DB_URL);
 
     // log when successfully connected
     mongoose.connection.on('connected', function () {
