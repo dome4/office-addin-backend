@@ -1,6 +1,14 @@
 ﻿import { RequirementRelation } from "./models/requirement/requirement-relation.model";
 import { RequirementTemplatePart } from "./models/requirement/requirement-template-part.model";
 import { Requirement } from "./models/requirement/requirement.model";
+import * as mongoose from 'mongoose';
+
+
+/**
+* Set to Node.js native promises
+* Per http://mongoosejs.com/docs/promises.html
+*/
+(<any>mongoose).Promise = global.Promise;
 
 /*
  * script to seed an empty database to prevent error
@@ -151,84 +159,27 @@ let req2 = new Requirement({
  * save docs in correct order
  * 
  */
-(async () => {
 
-   
-    // save requirement relations
-    await relation1.save((error) => {
-        if (error)
-            console.log(error);
-    });
+// save requirement relations first
+let promise = relation1.save();
 
-    await relation2.save((error) => {
-        if (error)
-            console.log(error);
-    });
+promise
+    .then((result) => relation2.save())
+    .then((result) => relation3.save())
 
-    await relation3.save((error) => {
-        if (error)
-            console.log(error);
-    });
-
-    // save requirement template parts
-    await part1.save((error) => {
-        if (error)
-            console.log(error);
-    });
-
-    await part2.save((error) => {
-        if (error)
-            console.log(error);
-    });
-
-    await part3.save((error) => {
-        if (error)
-            console.log(error);
-    });
+     // save requirement template parts
+    .then((result) => part1.save())
+    .then((result) => part2.save())
+    .then((result) => part3.save())
 
     // save requirements
-    req1.save((error) => {
-        if (error)
-            console.log(error);
-    });
+    .then((result) => req1.save())
+    .then((result) => req2.save())
 
-    await req2.save((error) => {
-        if (error)
-            console.log(error);
-    });
-    
-})();
+    // log if successfully finished
+    .then((result) => console.log('---- seeder script finished ---'))
 
-//async.waterfall([
-//    async (reponse) => {
-//        await relation1.save((error) => {
-//            if (error)
-//                console.log(error);
-//        });
+    // exit script
+    .then((result) => process.exit(1))
 
-//        reponse(null, 'one');
-//    },
-//    async (reponse, arg1) => {
-//        await relation1.save((error) => {
-//            if (error)
-//                console.log(error);
-//        });
-
-//        reponse(null, 'one');
-//    }
-
-
-//], (error, result) => {
-
-//    if (error) {
-//        console.log(error);
-//        return;
-//    }
-
-//    console.log(result);
-//    console.log('---- seeder script finished ----');
-//    });
-
-// Promises hat auch nicht geklappt -> irgendwiene andere Lösung finden
-// typischer Fehler: saveParallel
-
+    .catch((error) => console.log(error.message));

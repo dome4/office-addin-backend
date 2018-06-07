@@ -2,6 +2,13 @@
 
 API for the Office Version Control.
 
+## Installation
+* rename `.env.example` to `.env` and fill out the variables
+* run `npm install` in subfolder `VersionControlBackend` to install the dependencies
+* compile typescript-files
+* (optional) run `node seeder.js` to seed the database
+* run `npm start` to start the API
+
 ## Authentication
 ```sh
 POST      /api/user/authenticate            - creates a new auth token
