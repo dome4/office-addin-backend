@@ -2,6 +2,7 @@
 import { RequirementTemplatePart } from "./models/requirement/requirement-template-part.model";
 import { Requirement } from "./models/requirement/requirement.model";
 import * as mongoose from 'mongoose';
+import { User } from "./models/user.model";
 
 
 /**
@@ -20,6 +21,24 @@ console.log('---- seeder script started ----');
  * connect to mongodb
  */
 require('./mongo').connect();
+
+/*
+ * create users
+ * 
+ */
+let user1 = new User({
+
+    name: 'admin',
+    password: '1234567890',
+    admin: true
+});
+
+let user2 = new User({
+
+    name: 'dominic',
+    password: '9874563210',
+    admin: false
+});
 
 /*
  * create requirement relations
@@ -175,6 +194,10 @@ promise
     // save requirements
     .then((result) => req1.save())
     .then((result) => req2.save())
+
+    // save users
+    .then((result) => user1.save())
+    .then((result) => user2.save())
 
     // log if successfully finished
     .then((result) => console.log('---- seeder script finished ---'))
