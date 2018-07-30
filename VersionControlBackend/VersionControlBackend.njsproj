@@ -38,6 +38,9 @@
     <TypeScriptCompile Include="controllers\base.controller.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="controllers\office.controller.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="controllers\requirement\requirement-relation.controller.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>

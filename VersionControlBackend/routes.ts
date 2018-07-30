@@ -3,6 +3,7 @@ import { RequirementController } from './controllers/requirement/requirement.con
 import { UserController } from './controllers/user.controller';
 import { RequirementTemplatePartController } from './controllers/requirement/requirement-template-part.controller';
 import { RequirementRelationController } from './controllers/requirement/requirement-relation.controller';
+import { OfficeController } from './controllers/office.controller';
 
 /**
  * create router
@@ -36,6 +37,9 @@ try {
     // users
     router.use('/user', new UserController().singularRoute());
     router.use('/users', new UserController().pluralRoute());
+
+    // office
+    router.use('/office', new OfficeController().route());
 
 } catch (e) {
     console.error(e);

@@ -16,7 +16,11 @@ require('./mongo').connect();
 app.use(cors());
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+
+// default limit of 100kb is to low for word documents as xml string
+app.use(bodyParser.urlencoded({ limit: '500kb', extended: false }))
+
+
 app.use(express.static(path.join(root, 'dist')));
 app.use('/api', routes);
 app.get('*', (req, res) => {
