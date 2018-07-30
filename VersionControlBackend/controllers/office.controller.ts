@@ -51,14 +51,14 @@ export class OfficeController {
         // create dom object
         const dom = new JSDOM();
 
-        const xml = new dom.window.DOMParser().parseFromString(xmlDocument, 'text/xml')
+        const xml = new dom.window.DOMParser().parseFromString(xmlDocument, 'text/xml');
 
         // check for parse errors
-        const parseError = xml.getElementsByTagName('parsererror')
+        const parseError = xml.getElementsByTagName('parsererror');
         if (parseError.length != 0) {
 
             // parserError is of type HTMLCollection {}
-            throw new Error('xml parseError occured' + parseError);
+            throw new Error('xml parseError occured: ' + parseError);
         }
         /*
          * create dom object and parse the xml - start
@@ -85,7 +85,7 @@ export class OfficeController {
         let nodes = Array.from(xml.getElementsByTagName('w:t'))
             .filter(findReqEnd)
             .filter(findParagraphParent)
-            .map(getParentNode)
+            .map(getParentNode);
         /*
          * find the last requirement - end
          */
@@ -116,10 +116,39 @@ export class OfficeController {
          */
         xmlResult = xmlResult.replace('<vc-requirement-nodes/>', requiremenXmlTemplate);
 
-        // ToDo: validate xml
+        try {
 
-        // return serialized and updated file
-        res.send(xmlResult);
+            // validate updated string
+            this.validateXml(xmlResult);
+
+            // return serialized and updated file
+            res.send(xmlResult);
+
+        } catch (error) {
+            res.json({ success: false, message: 'requirement template xml file not valid' });
+        }       
+    }
+
+    /**
+     * method validates the given xml string
+     * 
+     * @param xml XML-String
+     */
+    validateXml(xmlString: string): boolean {
+
+        const dom = new JSDOM();
+
+        const xml = new dom.window.DOMParser().parseFromString(xmlString, 'text/xml');
+
+        // check for parse errors
+        const parseError = xml.getElementsByTagName('parsererror');
+        if (parseError.length != 0) {
+
+            // parserError is of type HTMLCollection {}
+            throw new Error('xml parseError occurred');
+        } else {
+            return true;
+        }
     }
 
 
