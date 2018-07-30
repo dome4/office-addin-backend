@@ -98,7 +98,7 @@ export class OfficeController {
         let lastNode = nodes[nodes.length - 1];
 
         // node to insert // debug node -> for loop to insert all necessary nodes
-        let newNode = xml.createElement("w:t");
+        let newNode = xml.createElement('vc-requirement-nodes');
 
         // insert new node before last node's next sibling
         var insertedNode = lastNode.parentNode.insertBefore(newNode, lastNode.nextSibling);
@@ -109,6 +109,14 @@ export class OfficeController {
 
         //serialize changed xml file
         let xmlResult = new XMLSerializer().serializeToString(xml);
+
+
+        /*
+         * insert the requirement template for the placeholder
+         */
+        xmlResult = xmlResult.replace('<vc-requirement-nodes/>', requiremenXmlTemplate);
+
+        // ToDo: validate xml
 
         // return serialized and updated file
         res.send(xmlResult);
@@ -123,7 +131,7 @@ export class OfficeController {
         const router = new Router();
 
         // insert requirment template in xml document
-        router.post("/", (req, res) => {
+        router.post('/', (req, res) => {
             this.insertNextRequirement(req, res);
         });
 
