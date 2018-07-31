@@ -160,7 +160,7 @@ export class OfficeController {
         const router = new Router();
 
         // insert requirment template in xml document
-        router.post('/', (req, res) => {
+        router.post('/insert-new-requirement', (req, res) => {
             this.insertNextRequirement(req, res);
         });
 
