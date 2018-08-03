@@ -37,7 +37,12 @@ export class RequirementController extends BaseController {
         var filter = {};
         filter[this.id] = id;
 
-        const docquery = Requirement.findOne(filter).populate('descriptionParts').populate('relations')
+        const docquery = Requirement
+            .findOne(filter)
+            .populate('descriptionParts')
+            .populate('relations')
+            .populate('descriptionTemplate');
+
         docquery
             .exec()
             .then((modelInstances) => {
@@ -66,7 +71,12 @@ export class RequirementController extends BaseController {
      */
     list(response) {
 
-        const docquery = Requirement.find({}).limit(MAX_RESULTS).populate('descriptionParts').populate('relations');
+        const docquery = Requirement
+            .find({})
+            .limit(MAX_RESULTS)
+            .populate('descriptionParts')
+            .populate('relations')
+            .populate('descriptionTemplate');
         docquery
             .exec()
             .then((modelInstances) => {

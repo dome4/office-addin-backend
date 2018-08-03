@@ -48,5 +48,13 @@ DELETE    /api/requirement-relation/{:id}    - removes the requirement relation 
 ```
 
 ```sh
+GET       /api/requirement-relationsrequirement-description-templates - returns the list of all requirement description templates
+POST      /api/requirement-description-template                       - creates a new requirement description template
+GET       /api/requirement-description-template/{:id}                 - returns the requirement description template with the given id
+PUT       /api/requirement-description-template/{:id}                 - updates the requirement description template with the given id
+DELETE    /api/requirement-description-template/{:id}                 - removes the requirement description template with the given id
+```
+
+```sh
 GET       /api/office/insert-new-requirement - inserts a given requirement template in the given xml document
 ```

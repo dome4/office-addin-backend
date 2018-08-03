@@ -4,6 +4,7 @@ import { UserController } from './controllers/user.controller';
 import { RequirementTemplatePartController } from './controllers/requirement/requirement-template-part.controller';
 import { RequirementRelationController } from './controllers/requirement/requirement-relation.controller';
 import { OfficeController } from './controllers/office.controller';
+import { RequirementDescriptionTemplateController } from './controllers/requirement/requirement-description-template.controller';
 
 /**
  * create router
@@ -21,7 +22,7 @@ try {
     router.use((req, res, next) => {
         new UserController().authMiddleware(req, res, next);
     });
-    
+
     // requirements
     router.use('/requirement', new RequirementController().singularRoute());
     router.use('/requirements', new RequirementController().pluralRoute());
@@ -33,6 +34,10 @@ try {
     // requirement relations
     router.use('/requirement-relation', new RequirementRelationController().singularRoute());
     router.use('/requirement-relations', new RequirementRelationController().pluralRoute());
+
+    // requirement description templates
+    router.use('/requirement-description-template', new RequirementDescriptionTemplateController().singularRoute());
+    router.use('/requirement-description-templates', new RequirementDescriptionTemplateController().pluralRoute());
 
     // users
     router.use('/user', new UserController().singularRoute());

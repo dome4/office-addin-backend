@@ -1,6 +1,7 @@
 ﻿import { Schema, model } from 'mongoose';
 import { RequirementTemplatePart } from './requirement-template-part.model';
 import { RequirementRelation } from './requirement-relation.model';
+import { RequirementDescriptionTemplate } from './requirement-description-template.model';
 
 /**
  * requirement schema
@@ -71,7 +72,10 @@ const RequirementSchema: Schema = new Schema(
         acceptanceCriteria: String,
 
         // ToDo write method which compares description template with given description parts
-        descriptionTemplate: Schema.Types.ObjectId
+        descriptionTemplate: {            
+            type: Schema.Types.ObjectId,
+            ref: 'RequirementDescriptionTemplate'
+        }
     },
     {
         timestamps: true

@@ -41,6 +41,9 @@
     <TypeScriptCompile Include="controllers\office.controller.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="controllers\requirement\requirement-description-template.controller.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="controllers\requirement\requirement-relation.controller.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
@@ -51,6 +54,9 @@
       <SubType>Code</SubType>
     </TypeScriptCompile>
     <TypeScriptCompile Include="controllers\user.controller.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="models\requirement\requirement-description-template.model.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
     <TypeScriptCompile Include="models\requirement\requirement-relation.model.ts">
