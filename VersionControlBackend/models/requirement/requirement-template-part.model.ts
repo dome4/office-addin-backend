@@ -14,7 +14,9 @@ const RequirementTemplatePartSchema: Schema = new Schema(
             type: String,
             enum: [
                 'dropdown',
-                'fill in'
+                'input',
+                'text',
+                'table'
                 // ToDo: complete list
             ]
         },
