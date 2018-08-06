@@ -16,7 +16,8 @@ const RequirementTemplatePartSchema: Schema = new Schema(
                 'dropdown',
                 'input',
                 'text',
-                'table'
+                'table',
+                'wrapper'
                 // ToDo: complete list
             ]
         },
