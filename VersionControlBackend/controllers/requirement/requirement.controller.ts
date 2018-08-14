@@ -26,6 +26,43 @@ export class RequirementController extends BaseController {
      * override super methods
      */
 
+    /**
+     * create a MongoDB record
+     * 
+     * @param data Request Body
+     * @param reponse HttpResponse
+     */
+    create(data, response) {    
+        Requirement
+            .create(data,
+            (error, modelInstance) => {
+
+                if (error) {
+                    // send status 500 response
+                    response.status(500).send(error);
+                    return;
+
+                } else {
+                    // populate
+                    modelInstance
+                        .populate('descriptionParts')
+                        .populate('relations')
+                        .populate('descriptionTemplate', (error, modelInstance) => {
+
+                            if (error) {
+                                // send status 500 response
+                                response.status(500).send(error);
+                                return;
+                            } else {
+                                // log success and send created model instance
+                                response.status(201).json(modelInstance); // ToDo populate
+                                console.log('modelInstance created successfully!');
+                            }
+                        });
+                }
+            });
+    }
+
 
     /**
      * reads a model by it’s primary key
