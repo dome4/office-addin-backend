@@ -15,7 +15,8 @@ const RequirementDescriptionTemplateSchema: Schema = new Schema(
                 value: {}
             }
         ],
-        description: String
+        description: String,
+        example: String
     }
 );
 
