@@ -59,15 +59,6 @@ const RequirementSchema: Schema = new Schema(
                 ref: 'RequirementRelation'
             }
             ],
-        priority: {
-            type: String,
-            enum: [
-                'Must-have',
-                'Should-have',
-                'Nice-to-have',
-                'Soon-to-be'
-            ]
-        },
         keyWords: [String],
         acceptanceCriteria: String,
 
