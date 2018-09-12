@@ -81,6 +81,9 @@
     <Content Include=".env.example">
       <SubType>Code</SubType>
     </Content>
+    <Content Include=".esdoc.json">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include=".gitignore" />
     <Content Include="index.html" />
     <Content Include="LICENSE" />
