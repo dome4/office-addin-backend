@@ -22,6 +22,9 @@ const RequirementTemplatePartSchema: Schema = new Schema(
             ]
         },
         head: Boolean
+    },
+    {
+        timestamps: true
     }
 );
 

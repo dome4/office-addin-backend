@@ -21,6 +21,9 @@ const RequirementRelationSchema: Schema = new Schema(
             ]
         },
         targetComponentID: Schema.Types.ObjectId
+    },
+    {
+        timestamps: true
     }
 );
 

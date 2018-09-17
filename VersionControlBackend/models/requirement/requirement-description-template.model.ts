@@ -17,6 +17,9 @@ const RequirementDescriptionTemplateSchema: Schema = new Schema(
         ],
         description: String,
         example: String
+    },
+    {
+        timestamps: true
     }
 );
 
